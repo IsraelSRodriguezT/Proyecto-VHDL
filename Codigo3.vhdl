@@ -8,9 +8,9 @@ entity semaforos_con_pulsador is
         reset      : in  std_logic;  
         pulsador_1 : in  std_logic;  
         pulsador_2 : in  std_logic;  
-        semaforo_1 : out std_logic_vector(1 downto 0);  -- 00=Rojo, 01=Amarillo, 10=Verde
-        semaforo_2 : out std_logic_vector(1 downto 0);  
-        peatonal_1 : out std_logic_vector(1 downto 0);  
+        semaforo_1 : out std_logic_vector(2 downto 0);  -- 000=Rojo, 001=Amarillo, 010=Verde
+        semaforo_2 : out std_logic_vector(2 downto 0);  
+        peatonal_1 : out std_logic_vector(1 downto 0);  -- 00=Rojo, 10=Verde
         peatonal_2 : out std_logic_vector(1 downto 0)
     );
 end semaforos_con_pulsador; 
@@ -150,14 +150,14 @@ begin
             end case;
         end if;
     end process;
-    semaforo_1 <= "10" when estado_semaforo_1 = VERDE else
-                  "01" when estado_semaforo_1 = AMARILLO else
-                  "00";
+    semaforo_1 <= "010" when estado_semaforo_1 = VERDE else
+                  "001" when estado_semaforo_1 = AMARILLO else
+                  "000";
     peatonal_1 <= "10" when estado_semaforo_1 = ROJO else
                   "00";
-    semaforo_2 <= "10" when estado_semaforo_2 = VERDE else
-                  "01" when estado_semaforo_2 = AMARILLO else
-                  "00";
+    semaforo_2 <= "010" when estado_semaforo_2 = VERDE else
+                  "001" when estado_semaforo_2 = AMARILLO else
+                  "000";
     peatonal_2 <= "10" when estado_semaforo_2 = ROJO else
                   "00";
 end Behavioral;
